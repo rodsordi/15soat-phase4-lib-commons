@@ -14,6 +14,7 @@ Este diretório centraliza os registros formais de decisões de arquitetura (**A
 | **[ADR 0004](0004-singular-table-naming-convention-sql.md)** | Convenção Singular e Padrão de Nomenclatura para Modelagem de Dados Relacional | **Aceito** | 2026-10-02 | Global (Schemas SQL) |
 | **[ADR 0005](0005-java-25-spring-boot-4-graalvm-baseline.md)** | Adoção do Java 25 e Spring Boot 4 com Suporte a GraalVM Native Image | **Aceito** | 2026-10-02 | Global (Stack & Runtime) |
 | **[ADR 0006](0006-observability-traceability-and-testcontainers-strategy.md)** | Estratégia de Testes Automatizados Testcontainers, Observabilidade e Rastreabilidade | **Aceito** | 2026-10-02 | Global (QA & SRE) |
+| **[ADR 0007](0007-dto-specification-contract-records-hateoas-pagination.md)** | Padronização de DTOs com Nested Records, Contratos de Interface, HATEOAS e Paginação | **Aceito** | 2026-10-06 | Global (APIs & Contratos DTO) |
 
 ---
 

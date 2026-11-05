@@ -1,15 +1,30 @@
-name: Library CI
+name: "Commons Library CI"
 
 on:
   push:
-    branches: [ main, master ]
+    branches:
+      - master
+      - main
+      - feature/phase4
   pull_request:
-    branches: [ main, master ]
+    branches:
+      - master
+      - main
+      - feature/phase4
+  workflow_dispatch:
+
+concurrency:
+  group: ci-commons-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
-  build:
-    name: Build & Test (Java 25)
+  build-and-verify:
+    name: "Build, Test & Verify Modules (Java 25)"
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout Code
@@ -22,5 +37,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build with Maven
-        run: mvn clean install -B
+      - name: Compile and Run Module Tests
+        run: mvn clean test -B
+
+      - name: Build & Install Modules to Local Maven Cache
+        run: mvn install -DskipTests -B

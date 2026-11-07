@@ -19,6 +19,7 @@ concurrency:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   build-and-verify:
@@ -36,9 +37,17 @@ jobs:
           java-version: '25'
           distribution: 'temurin'
           cache: maven
+          server-id: github
+          settings-path: ${{ github.workspace }}
 
       - name: Compile and Run Module Tests
         run: mvn clean test -B
 
       - name: Build & Install Modules to Local Maven Cache
         run: mvn install -DskipTests -B
+
+      - name: Publish Modules to GitHub Packages
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feature/phase4')
+        run: mvn deploy -DskipTests -B -s ${{ github.workspace }}/settings.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

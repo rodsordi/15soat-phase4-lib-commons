@@ -18,5 +18,6 @@ public interface KafkaSetup {
     @DynamicPropertySource
     static void configurePropertiesKafka(DynamicPropertyRegistry registry) {
         registry.add("spring.kafka.bootstrap-servers", KAFKA::getBootstrapServers);
+        registry.add("spring.kafka.consumer.auto-offset-reset", () -> "earliest");
     }
 }

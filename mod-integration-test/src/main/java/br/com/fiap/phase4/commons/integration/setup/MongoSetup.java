@@ -19,5 +19,6 @@ public interface MongoSetup {
     @DynamicPropertySource
     static void configurePropertiesMongo(DynamicPropertyRegistry registry) {
         registry.add("spring.data.mongodb.uri", MONGO::getReplicaSetUrl);
+        registry.add("spring.mongodb.uri", MONGO::getReplicaSetUrl);
     }
 }

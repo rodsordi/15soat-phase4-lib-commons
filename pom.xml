@@ -26,6 +26,9 @@
         <mapstruct.version>1.6.3</mapstruct.version>
         <springdoc-openapi.version>3.0.2</springdoc-openapi.version>
         <archunit.version>1.4.1</archunit.version>
+        <testcontainers.version>1.20.5</testcontainers.version>
+        <rest-assured.version>6.0.0</rest-assured.version>
+        <wiremock-spring-boot.version>4.2.0</wiremock-spring-boot.version>
     </properties>
 
     <modules>
@@ -36,6 +39,7 @@
         <module>mod-mongo</module>
         <module>mod-aot</module>
         <module>mod-test</module>
+        <module>mod-integration-test</module>
     </modules>
 
     <dependencyManagement>
@@ -75,6 +79,20 @@
                 <groupId>br.com.fiap.phase4</groupId>
                 <artifactId>mod-test</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>br.com.fiap.phase4</groupId>
+                <artifactId>mod-integration-test</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Testcontainers BOM -->
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>${testcontainers.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- ArchUnit -->

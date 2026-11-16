@@ -40,11 +40,17 @@
         <module>mod-aot</module>
         <module>mod-test</module>
         <module>mod-integration-test</module>
+        <module>mod-security</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <!-- Internal submodules -->
+            <dependency>
+                <groupId>br.com.fiap.phase4</groupId>
+                <artifactId>mod-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>br.com.fiap.phase4</groupId>
                 <artifactId>mod-domain</artifactId>

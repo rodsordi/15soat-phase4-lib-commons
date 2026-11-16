@@ -29,6 +29,26 @@
         <testcontainers.version>1.20.5</testcontainers.version>
         <rest-assured.version>6.0.0</rest-assured.version>
         <wiremock-spring-boot.version>4.2.0</wiremock-spring-boot.version>
+        <jacoco.version>0.8.14</jacoco.version>
+        <sonar-maven-plugin.version>5.0.0.4389</sonar-maven-plugin.version>
+        <sonar.java.source>${java.version}</sonar.java.source>
+        <sonar.coverage.jacoco.xmlReportPaths>
+            ${maven.multiModuleProjectDirectory}/target/site/jacoco/jacoco.xml,
+            ${maven.multiModuleProjectDirectory}/target/site/jacoco-aggregate/jacoco.xml,
+            ${project.basedir}/target/site/jacoco/jacoco.xml,
+            **/target/site/jacoco/jacoco.xml,
+            **/target/site/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.exclusions>
+            **/*Application.java,
+            **/config/**,
+            **/dto/**,
+            **/contracts/**,
+            **/generated-sources/**,
+            **/*Test.java,
+            **/iandt/**,
+            **/stress/**
+        </sonar.coverage.exclusions>
     </properties>
 
     <modules>
@@ -146,11 +166,43 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <configuration>
-                        <argLine>-XX:+EnableDynamicAgentLoading</argLine>
+                        <argLine>@{argLine} -XX:+EnableDynamicAgentLoading</argLine>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
     <distributionManagement>

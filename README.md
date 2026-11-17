@@ -43,15 +43,6 @@ Todos os microsserviços do ecossistema da Fase 4 adotam a **Arquitetura Hexagon
 
 O diagrama abaixo ilustra a visão arquitetural onde o módulo **`application`** atua como a casca executável e provedora de adaptadores, encapsulando no seu centro o módulo **`domain`** como o núcleo puro de negócio via Portas e Inversão de Dependência (DIP):
 
-<div style="overflow-x: auto; width: 100%;">
-<style>
-  .mermaid svg {
-    max-width: none !important;
-    min-width: 1550px !important;
-    width: 1550px !important;
-  }
-</style>
-
 ```mermaid
 flowchart TD
     %% =========================================================================
@@ -146,8 +137,6 @@ flowchart TD
     class PORTS_IN,PORTS_OUT,IN_PORT,REPO_PORT,EVENT_PORT,GATEWAY_PORT ports;
     class APP_MODULE,ADAPTERS_IN,ADAPTERS_OUT,ADAPTERS_PERSISTENCE,ADAPTERS_OTHER_OUT,APP_CONFIG,REST,KAFKA_IN,REPO_ADAPTER,MAPPER,JPA_ENTITY,SPRING_REPO,KAFKA_OUT,EXT_CLIENT,SPRING_BOOT c2;
 ```
-
-</div>
 
 ---
 

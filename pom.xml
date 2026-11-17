@@ -49,6 +49,9 @@
             **/iandt/**,
             **/stress/**
         </sonar.coverage.exclusions>
+        <sonar.organization>rodsordi</sonar.organization>
+        <sonar.projectKey>rodsordi_15soat-phase4-lib-commons</sonar.projectKey>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <modules>
